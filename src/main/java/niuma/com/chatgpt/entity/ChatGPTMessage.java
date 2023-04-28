@@ -11,5 +11,5 @@ public class ChatGPTMessage {
     private Long created;
     private String model;
     private Usage usage;
-    private List<Message> choices;
+    private List<Choice> choices;
 }

@@ -39,12 +39,11 @@ public class GPTClient {
         HttpRequest request = httpRequest();
         queryMap.put("messages", list);
         request.body(JSON.toJSONString(queryMap));
-        System.out.println(request);
+        // 发送请求获取 JSON 串
         String res = request.execute().body();
-        System.out.println(res);
         message = JSON.parseObject(res, ChatGPTMessage.class);
-        if (message.getId() != null) {
-            throw new BaseException("请求失败");
+        if (message.getId() == null) {
+            throw JSON.parseObject(res, BaseException.class);
         }
         return message;
     }

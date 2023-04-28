@@ -6,7 +6,7 @@ OpenAI ChatGPT 的 SDK。如果觉得不错的可以在右上角点个Star，蟹
 public class Demo {
     public static void main(String[] args) {
         String url = "https://api.openai.com/v1/chat/completions";
-        String key = ""; // OpenAI key
+        String key = "";
         ChatGPTClientBuilder builder = new ChatGPTClientBuilder();
         GPTClient client = builder
                 .url(url) // 设置 url，默认设置为 https://api.openai.com/v1/chat/completions，可以省略
@@ -18,8 +18,12 @@ public class Demo {
         message.setRole(Role.USER);
         message.setContent("你好 chatgpt");
         list.add(message);
-        ChatGPTMessage send = client.send(list);
-        System.out.println(send);
+        try{
+            ChatGPTMessage send = client.send(list);
+            System.out.println(send);
+        }catch (BaseException e){
+            e.printStackTrace();
+        }
     }
 }
 ```
